@@ -1,7 +1,6 @@
 package com.example.proyectonuevo.Tablas;
 
 import com.example.proyectonuevo.HelloApplication;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,14 +9,22 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
+import javafx.util.converter.DateTimeStringConverter;
+import javafx.util.converter.LocalTimeStringConverter;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -41,7 +48,7 @@ public class FIFOController implements Initializable {
     @FXML
     private TextField txtTiempoAtencion;
 
-        @FXML
+    @FXML
     void regresar(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/proyectonuevo/PantallaPrincipal.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -75,6 +82,43 @@ public class FIFOController implements Initializable {
 
     }
 
+    @FXML
+    void check(KeyEvent event) throws ParseException{
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat format2 = new SimpleDateFormat("mm:ss");
+
+        txtTiempoLLegada.setTextFormatter(new TextFormatter<>(new DateTimeStringConverter(format), format.parse("00:00")));
+        txtTiempoAtencion.setTextFormatter(new TextFormatter<>(new DateTimeStringConverter(format2), format.parse("00:00")));
+    }
+
+    public LocalTime fromString(String string) {
+        String[] tokens = string.split(":");
+        int hours = getIntField(tokens, 0);
+        int minutes = getIntField(tokens, 1) ;
+        int seconds = getIntField(tokens, 2);
+        int totalSeconds = (hours * 60 + minutes) * 60 + seconds ;
+        return LocalTime.of((totalSeconds / 3600) % 24, (totalSeconds / 60) % 60, seconds % 60);
+    }
+    private int getIntField(String[] tokens, int index) {
+        if (tokens.length <= index || tokens[index].isEmpty()) {
+            return 0 ;
+        }
+        return Integer.parseInt(tokens[index]);
+    }
+
+    void formatoFecha() throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        txtTiempoAtencion.setTextFormatter(new TextFormatter<>(new DateTimeStringConverter(format), format.parse("00:00")));
+        /*StringConverter<Integer> minSecConverter = new IntRangeStringConverter(0, 59);
+        minutes.setTextFormatter(new TextFormatter<>(minSecConverter, 0));
+        seconds.setTextFormatter(new TextFormatter<>(minSecConverter, 0));
+        hours.setTextFormatter(new TextFormatter<>(new IntRangeStringConverter(0, 23), 0));
+        prepareTextField(hours);
+        prepareTextField(minutes);
+        prepareTextField(seconds);
+        */
+    }
+
     void arreglo(){
         lista.forEach(System.out::println);
         tableViewLista.setItems(lista);
@@ -89,5 +133,5 @@ public class FIFOController implements Initializable {
         col_llega.setCellValueFactory(new PropertyValueFactory("tiempo_llegada"));
         col_aten.setCellValueFactory(new PropertyValueFactory("tiempo_atencion"));
 
-    }
+      }
 }
