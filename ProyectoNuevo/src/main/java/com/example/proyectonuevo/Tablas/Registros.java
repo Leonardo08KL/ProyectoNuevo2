@@ -2,13 +2,29 @@ package com.example.proyectonuevo.Tablas;
 
 public class Registros {
     int id;
-    double tiempo_llegada;
-    double tiempo_atencion;
+    String tiempo_llegada;
+    String tiempo_atencion;
+    String cubrebocas;
 
-    public Registros(int id, double tiempo_llegada, double tiempo_atencion) {
+    public Registros(int id, String tiempo_llegada, String tiempo_atencion) {
         this.id = id;
         this.tiempo_llegada = tiempo_llegada;
         this.tiempo_atencion = tiempo_atencion;
+    }
+
+    public Registros(int id, String tiempo_llegada, String tiempo_atencion, String cubrebocas) {
+        this.id = id;
+        this.tiempo_llegada = tiempo_llegada;
+        this.tiempo_atencion = tiempo_atencion;
+        this.cubrebocas = cubrebocas;
+    }
+
+    public String getCubrebocas() {
+        return cubrebocas;
+    }
+
+    public void setCubrebocas(String cubrebocas) {
+        this.cubrebocas = cubrebocas;
     }
 
     public int getId() {
@@ -19,19 +35,19 @@ public class Registros {
         this.id = id;
     }
 
-    public double getTiempo_llegada() {
+    public String getTiempo_llegada() {
         return tiempo_llegada;
     }
 
-    public void setTiempo_llegada(double tiempo_llegada) {
+    public void setTiempo_llegada(String tiempo_llegada) {
         this.tiempo_llegada = tiempo_llegada;
     }
 
-    public double getTiempo_atencion() {
+    public String getTiempo_atencion() {
         return tiempo_atencion;
     }
 
-    public void setTiempo_atencion(double tiempo_atencion) {
+    public void setTiempo_atencion(String tiempo_atencion) {
         this.tiempo_atencion = tiempo_atencion;
     }
 
