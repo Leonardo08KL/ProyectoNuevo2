@@ -30,10 +30,10 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TextField fx:id="txtTiempoLLegada" alignment="CENTER" onKeyTyped="#check" GridPane.columnIndex="1" />
+            <TextField fx:id="txtTiempoLLegada" alignment="CENTER" GridPane.columnIndex="1" />
             <Label text="Tiempo De Llegada" />
             <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" text="Tiempo De Atención" GridPane.rowIndex="1" />
-            <TextField fx:id="txtTiempoAtencion" alignment="CENTER" onKeyTyped="#check" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtTiempoAtencion" alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="137.0" text="Insetar" GridPane.rowIndex="2" />
             <Button mnemonicParsing="false" onAction="#Insertar" prefHeight="40.0" prefWidth="100.0" text="Ingresar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>

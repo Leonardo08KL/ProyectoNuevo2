@@ -36,9 +36,9 @@ public class FIFOController implements Initializable {
     @FXML
     private TableColumn<Registros,Integer> colNo;
     @FXML
-    private TableColumn<Registros, Double> col_aten;
+    private TableColumn<Registros, String> col_aten;
     @FXML
-    private TableColumn<Registros, Double> col_llega;
+    private TableColumn<Registros, String> col_llega;
     @FXML
     private TableView<Registros> tableViewLista;
 
@@ -61,14 +61,18 @@ public class FIFOController implements Initializable {
 
     @FXML
     private void Insertar(ActionEvent event) throws IOException {
-        Double hora_llega = Double.parseDouble(txtTiempoLLegada.getText());
-        Double minutos_atencion = Double.parseDouble(txtTiempoAtencion.getText());
+
+        String hora_llego = txtTiempoLLegada.getText();
+        String hora_aten = txtTiempoAtencion.getText();
+
+        //Double hora_llega = Double.parseDouble(txtTiempoLLegada.getText());
+        //Double minutos_atencion = Double.parseDouble(txtTiempoAtencion.getText());
 
         if(cont <= 5) {
 
-            minutos_atencion = hora_llega / 10;
+            //minutos_atencion = hora_llega / 10;
 
-            array.add(new Registros(cont, hora_llega, minutos_atencion));
+            array.add(new Registros(cont, hora_llego, hora_aten));
             lista.add(array.get(cont_aux));
             txtTiempoAtencion.setText("");
             txtTiempoLLegada.setText("");
@@ -91,38 +95,12 @@ public class FIFOController implements Initializable {
         txtTiempoAtencion.setTextFormatter(new TextFormatter<>(new DateTimeStringConverter(format2), format.parse("00:00")));
     }
 
-    public LocalTime fromString(String string) {
-        String[] tokens = string.split(":");
-        int hours = getIntField(tokens, 0);
-        int minutes = getIntField(tokens, 1) ;
-        int seconds = getIntField(tokens, 2);
-        int totalSeconds = (hours * 60 + minutes) * 60 + seconds ;
-        return LocalTime.of((totalSeconds / 3600) % 24, (totalSeconds / 60) % 60, seconds % 60);
-    }
-    private int getIntField(String[] tokens, int index) {
-        if (tokens.length <= index || tokens[index].isEmpty()) {
-            return 0 ;
-        }
-        return Integer.parseInt(tokens[index]);
-    }
 
-    void formatoFecha() throws ParseException {
-        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
-        txtTiempoAtencion.setTextFormatter(new TextFormatter<>(new DateTimeStringConverter(format), format.parse("00:00")));
-        /*StringConverter<Integer> minSecConverter = new IntRangeStringConverter(0, 59);
-        minutes.setTextFormatter(new TextFormatter<>(minSecConverter, 0));
-        seconds.setTextFormatter(new TextFormatter<>(minSecConverter, 0));
-        hours.setTextFormatter(new TextFormatter<>(new IntRangeStringConverter(0, 23), 0));
-        prepareTextField(hours);
-        prepareTextField(minutes);
-        prepareTextField(seconds);
-        */
-    }
 
     void arreglo(){
         lista.forEach(System.out::println);
         tableViewLista.setItems(lista);
-        array.forEach(registros -> System.out.println(registros));
+        //array.forEach(registros -> System.out.println(registros));
     }
 
     @Override
