@@ -10,14 +10,13 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@Estilos.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectonuevo.Tablas.FIFOController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@Estilos.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectonuevo.Tablas.FIFOController">
    <children>
-      <TableView layoutX="50.0" layoutY="80.0" prefHeight="280.0" prefWidth="330.0">
+      <TableView fx:id="tableViewLista" layoutX="50.0" layoutY="80.0" prefHeight="280.0" prefWidth="330.0">
         <columns>
-            <TableColumn prefWidth="75.0" text="No" />
-          <TableColumn minWidth="50.0" prefWidth="120.0" text="Tiempo llegada" />
-          <TableColumn prefWidth="120.0" text="Tiempo Atención" />
+            <TableColumn fx:id="colNo" prefWidth="75.0" text="No" />
+          <TableColumn fx:id="col_llega" minWidth="50.0" prefWidth="120.0" text="Tiempo llegada" />
+          <TableColumn fx:id="col_aten" prefWidth="120.0" text="Tiempo Atención" />
         </columns>
       </TableView>
       <GridPane layoutX="49.0" layoutY="364.0" prefHeight="181.0" prefWidth="304.0">
@@ -36,7 +35,7 @@
             <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" text="Tiempo De Atención" GridPane.rowIndex="1" />
             <TextField fx:id="txtTiempoAtencion" alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="137.0" text="Insetar" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Ingresar" GridPane.columnIndex="1" onAction="#Insertar" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" onAction="#Insertar" prefHeight="40.0" prefWidth="100.0" text="Ingresar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <Button layoutX="520.0" layoutY="183.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Simulación" />
