@@ -17,10 +17,10 @@ import java.util.ResourceBundle;
 public class PrincipalController implements Initializable {
     @FXML
     public void FiFo(ActionEvent event) throws IOException {
-        Parent Root = FXMLLoader.load(getClass().getResource("/com/example/proyectonuevo/FIFO.fxml"));
+        Parent Root = FXMLLoader.load(getClass().getResource("/com/example/proyectonuevo/FIFOAnimation.fxml"));
         Stage Stage = new Stage();
         Stage.setTitle("Another Window Triggered by Clicking");
-        Stage.setScene(new Scene(Root, 800, 600));
+        Stage.setScene(new Scene(Root, 1200, 650));
         Stage.show();
         ( (Node) (event.getSource() ) ).getScene().getWindow().hide();
     }
@@ -29,7 +29,7 @@ public class PrincipalController implements Initializable {
         Parent Root = FXMLLoader.load(getClass().getResource("/com/example/proyectonuevo/Cubrebocas.fxml"));
         Stage Stage = new Stage();
         Stage.setTitle("Another Window Triggered by Clicking");
-        Stage.setScene(new Scene(Root, 800, 600));
+        Stage.setScene(new Scene(Root, 1200, 650));
         Stage.show();
         ( (Node) (event.getSource() ) ).getScene().getWindow().hide();
     }
